@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/heart_icon" />
+            app:srcCompat="@drawable/fuel" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_IMG_heart2"
@@ -36,7 +36,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/heart_icon" />
+            app:srcCompat="@drawable/fuel" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_IMG_heart3"
@@ -44,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/heart_icon" />
+            app:srcCompat="@drawable/fuel" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -82,7 +82,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid6"
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid11"
@@ -100,7 +100,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid16"
                 android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid21"
@@ -117,7 +117,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid26"
@@ -126,7 +126,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid31"
                 android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid36"
@@ -169,7 +169,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid7"
@@ -178,7 +178,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid12"
@@ -187,7 +187,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid17"
                 android:layout_width="match_parent"
@@ -195,7 +195,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid22"
@@ -204,7 +204,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid27"
@@ -213,7 +213,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid32"
                 android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid37"
@@ -256,7 +256,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid8"
@@ -265,7 +265,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid13"
@@ -274,7 +274,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid18"
                 android:layout_width="match_parent"
@@ -282,7 +282,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid23"
@@ -291,7 +291,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid28"
@@ -300,7 +300,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid33"
                 android:layout_width="match_parent"
@@ -308,7 +308,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid38"
@@ -343,7 +343,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid9"
@@ -352,7 +352,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid14"
@@ -361,7 +361,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid19"
                 android:layout_width="match_parent"
@@ -369,7 +369,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid24"
@@ -378,7 +378,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid29"
@@ -387,7 +387,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid34"
                 android:layout_width="match_parent"
@@ -395,7 +395,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid39"
@@ -429,7 +429,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid10"
@@ -438,7 +438,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid15"
@@ -447,7 +447,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid20"
                 android:layout_width="match_parent"
@@ -455,7 +455,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid25"
@@ -464,7 +464,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid30"
@@ -473,7 +473,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid35"
                 android:layout_width="match_parent"
@@ -481,7 +481,7 @@
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/asteroid1" />
+                app:srcCompat="@drawable/asteroid6" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid40"
