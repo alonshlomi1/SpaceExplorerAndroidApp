@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     private void refreshUI() {
         for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 3; col++) {
+            for (int col = 0; col < 5; col++) {
                 main_ING_grid[row][col].setVisibility(View.INVISIBLE);
             }
         }
@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_background = findViewById(R.id.main_IMG_background);
 
         // Initialize the grid array
-        main_ING_grid = new ShapeableImageView[8][3]; // Assuming 8 rows and 3 columns
+        main_ING_grid = new ShapeableImageView[8][5]; // Assuming 8 rows and 3 columns
         for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 3; col++) {
-                @SuppressLint("DiscouragedApi") int viewId = getResources().getIdentifier("main_IMG_grid" + ((row * 3) + col + 1), "id", getPackageName());
+            for (int col = 0; col < 5; col++) {
+                @SuppressLint("DiscouragedApi") int viewId = getResources().getIdentifier("main_IMG_grid" + ((row * 5) + col + 1), "id", getPackageName());
                 main_ING_grid[row][col] = findViewById(viewId);
                 main_ING_grid[row][col].setVisibility(View.INVISIBLE);
             }

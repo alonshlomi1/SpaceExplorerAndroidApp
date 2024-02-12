@@ -30,7 +30,7 @@ public class GameManager {
 
     public GameManager setStart() {
         this.spaceship = new Spaceship();
-        this.spaceship.setCol(1);
+        this.spaceship.setCol(2);
         this.spaceship.setImage(R.drawable.spaceship1);
         asteroidList = new ArrayList<>();
         return this;
