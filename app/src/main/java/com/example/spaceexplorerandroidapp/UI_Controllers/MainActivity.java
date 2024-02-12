@@ -96,8 +96,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void nextFrame(){
-        gameManager.randomNewAsteroid();
         gameManager.nextFrame();
+
+        gameManager.randomNewAsteroid();
         refreshUI();
     }
     private void arrowClick(int n) {
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     private void refreshUI() {
-        for (int row = 0; row < 8; row++) {
+        for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 5; col++) {
                 main_ING_grid[row][col].setVisibility(View.INVISIBLE);
             }
@@ -154,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
         main_IMG_background = findViewById(R.id.main_IMG_background);
 
         // Initialize the grid array
-        main_ING_grid = new ShapeableImageView[8][5]; // Assuming 8 rows and 3 columns
-        for (int row = 0; row < 8; row++) {
+        main_ING_grid = new ShapeableImageView[9][5]; // Assuming 8 rows and 3 columns
+        for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 5; col++) {
                 @SuppressLint("DiscouragedApi") int viewId = getResources().getIdentifier("main_IMG_grid" + ((row * 5) + col + 1), "id", getPackageName());
                 main_ING_grid[row][col] = findViewById(viewId);

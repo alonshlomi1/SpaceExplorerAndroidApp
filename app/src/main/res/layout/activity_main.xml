@@ -145,6 +145,15 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/spaceship1" />
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_grid41"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/spaceship1" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -216,6 +225,15 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid37"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/spaceship1" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_grid42"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -301,6 +319,15 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/spaceship1" />
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_grid43"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/spaceship1" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -378,6 +405,15 @@
                 android:layout_margin="8dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/spaceship1" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_grid44"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/spaceship1" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -449,6 +485,15 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_grid40"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/spaceship1" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/main_IMG_grid45"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

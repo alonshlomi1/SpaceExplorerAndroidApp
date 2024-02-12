@@ -10,7 +10,7 @@ public class Spaceship extends GameObject{
 
     @Override
     public int getRow() {
-        return 7;
+        return 8;
     }
     public static int[] getCrushSrcList(){return crushSrcList;}
 
