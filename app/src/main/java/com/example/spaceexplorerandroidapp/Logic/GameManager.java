@@ -115,7 +115,8 @@ public class GameManager {
         for (int i=0; i< asteroidList.size(); i++){
             if(asteroidList.get(i).getRow() + 1 == gridRows ){
                 if(asteroidList.get(i).getCol() == spaceship.getCol()) {
-                    crushes = crushes == (life-1)? 0 : crushes + 1;
+                    //crushes = crushes == (life-1)? 0 : crushes + 1;
+                    crushes = crushes + 1;
                     asteroidList.remove(i);
                     return true;
                 }

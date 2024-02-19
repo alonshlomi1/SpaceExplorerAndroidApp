@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.spaceexplorerandroidapp.Logic.GameManager;
 import com.example.spaceexplorerandroidapp.Model.Asteroid;
 import com.example.spaceexplorerandroidapp.R;
+import com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighScore;
 import com.example.spaceexplorerandroidapp.Utilities.SignalManager;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -120,7 +122,17 @@ public class MainActivity extends AppCompatActivity {
         if(gameManager.checkCrush()){
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getRandomCrushSrc());
             setCurrentLife();
-            toastAndVibrate("BOOM!", 500);
+            if(gameManager.getCrushes() == gameManager.getLife()){
+                toastAndVibrate("you Lost!", 1000);
+
+
+
+                startActivity(new Intent(this, HighScore.class));
+                finish();
+            }
+            else
+                toastAndVibrate("BOOM!", 500);
+
         }
         else
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getSpaceship().getImage());
@@ -133,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i< main_IMG_hearts.length; i++) {
             main_IMG_hearts[i].setVisibility(main_IMG_hearts.length - gameManager.getCrushes() > i ? View.VISIBLE : View.INVISIBLE);
         }
+
 
     }
     private void toastAndVibrate(String text, long milliseconds) {
