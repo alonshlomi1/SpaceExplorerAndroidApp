@@ -18,6 +18,8 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.gson.Gson;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 
@@ -32,6 +34,8 @@ public class HighScore extends AppCompatActivity {
     private HighscoreList listFragment;
     private ShapeableImageView score_IMG_background;
 
+    private HighscoreDataList highscoreList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +47,7 @@ public class HighScore extends AppCompatActivity {
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(score_IMG_background);
 
-        HighscoreDataList highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
+        getData();
         listFragment = new HighscoreList(highscoreList, getApplicationContext());
         mapFragment = new HighscoreMap();
         getSupportFragmentManager().beginTransaction().add(R.id.main_FRAME_list, listFragment).commit();
@@ -55,6 +59,11 @@ public class HighScore extends AppCompatActivity {
         });
         highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
         //Log.d("Playlist from SP", highscoreList.toString());
+    }
+
+    private void getData() {
+        highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
+        Collections.sort(highscoreList.getHighscoreArrayList(), Comparator.comparingInt(HighscoreData::getScore).reversed());
     }
 
     private void findViews() {

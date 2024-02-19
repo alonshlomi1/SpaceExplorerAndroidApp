@@ -15,6 +15,8 @@ import com.example.spaceexplorerandroidapp.Adapters.HighscoreAdapter;
 import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
 import com.example.spaceexplorerandroidapp.R;
 
+import java.util.ArrayList;
+
 
 public class HighscoreList extends Fragment {
 
@@ -23,6 +25,8 @@ public class HighscoreList extends Fragment {
     private RecyclerView main_LST_highscore;
     public HighscoreList(HighscoreDataList highscores, Context applicationContext) {
         highscoreList = highscores;
+        int limit = Math.min(highscoreList.getHighscoreArrayList().size(), 10);
+        highscoreList = new HighscoreDataList().setHighscoreArrayList(new ArrayList<>(highscoreList.getHighscoreArrayList().subList(0, limit)));
         applicationContext = applicationContext;
     }
 
