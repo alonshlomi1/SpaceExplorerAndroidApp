@@ -7,7 +7,7 @@
     android:background="@color/red_500">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_LST_movies"
+        android:id="@+id/main_LST_highscore"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"

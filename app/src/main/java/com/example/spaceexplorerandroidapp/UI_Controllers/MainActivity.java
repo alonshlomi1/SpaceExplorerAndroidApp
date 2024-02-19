@@ -1,5 +1,7 @@
 package com.example.spaceexplorerandroidapp.UI_Controllers;
 
+import static com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighScore.HIGHSCORE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -15,13 +17,18 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.spaceexplorerandroidapp.Logic.GameManager;
 import com.example.spaceexplorerandroidapp.Model.Asteroid;
+import com.example.spaceexplorerandroidapp.Model.HighscoreData;
+import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
 import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighScore;
+import com.example.spaceexplorerandroidapp.Utilities.SharedPreferencesManager;
 import com.example.spaceexplorerandroidapp.Utilities.SignalManager;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
 
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -34,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private ExtendedFloatingActionButton main_FAB_right;
     private ShapeableImageView[][] main_ING_grid;
     private GameManager gameManager;
-    private static final long FRAME_DELAY = 900;
+    private static long frame_delay = 900;
+    private static Boolean Play_with_sensors = false;
 
     private boolean timerOn = false;
     private Timer timer;
@@ -43,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            if (extras.getBoolean("speed"))
+                frame_delay = 450;
+            else
+                frame_delay = 900;
+            Play_with_sensors = extras.getBoolean("sensors");
+        }
         findViews();
         Glide.with(this)
                 .load(R.drawable.space_backround2)
@@ -94,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     runOnUiThread(() -> nextFrame());
                 }
-            }, 0, FRAME_DELAY);
+            }, 0, frame_delay);
         }
     }
     private void nextFrame(){
@@ -122,11 +138,9 @@ public class MainActivity extends AppCompatActivity {
         if(gameManager.checkCrush()){
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getRandomCrushSrc());
             setCurrentLife();
-            if(gameManager.getCrushes() == gameManager.getLife()){
+            if(gameManager.getCrushes() == gameManager.getLife()){ //if game ends
                 toastAndVibrate("you Lost!", 1000);
-
-
-
+                saveScore();
                 startActivity(new Intent(this, HighScore.class));
                 finish();
             }
@@ -139,6 +153,17 @@ public class MainActivity extends AppCompatActivity {
         main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setVisibility(View.VISIBLE);
 
         main_LBL_score.setText(String.format("%03d", gameManager.getScore()));
+    }
+
+    private void saveScore() {
+        HighscoreDataList highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
+        highscoreList.addHighscore(new HighscoreData()
+                .setDate(new Date())
+                .setScore(gameManager.getScore()));
+
+        Gson gson = new Gson();
+        String playlistAsJson = gson.toJson(highscoreList);
+        SharedPreferencesManager.getInstance().putString(HIGHSCORE, playlistAsJson);
     }
 
     private void setCurrentLife() {

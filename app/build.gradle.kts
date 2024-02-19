@@ -43,4 +43,6 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
     implementation ("androidx.work:work-runtime:2.9.0")
+    //Gson:
+    implementation ("com.google.code.gson:gson:2.10.1")
 }
