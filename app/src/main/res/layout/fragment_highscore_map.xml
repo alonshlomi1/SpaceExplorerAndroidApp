@@ -8,9 +8,10 @@
     >
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/map_LBL_cord"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hi"
+        android:text="lat:1 lon:1"
         android:gravity="center"
         android:textSize="40sp"
         android:textStyle="bold"/>

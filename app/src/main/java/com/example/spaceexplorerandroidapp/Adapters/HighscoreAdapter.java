@@ -1,13 +1,16 @@
 package com.example.spaceexplorerandroidapp.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.spaceexplorerandroidapp.Interfaces.HighscoreCallback;
 import com.example.spaceexplorerandroidapp.Model.HighscoreData;
 import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.Utilities.ImageLoader;
@@ -18,13 +21,18 @@ import java.util.ArrayList;
 public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.HighscoreViewHolder> {
     private Context context;
     private ArrayList<HighscoreData> highscores;
+    private HighscoreCallback highscoreCallback;
 
-    public HighscoreAdapter(Context context, ArrayList<HighscoreData> highscores) {
+
+    public HighscoreAdapter(Context context, ArrayList<HighscoreData> highscore) {
         this.context = context;
-        this.highscores = highscores;
+        this.highscores = highscore;
     }
 
-
+    public HighscoreAdapter setHighscoreCallback(HighscoreCallback highscoreCallback) {
+        this.highscoreCallback = highscoreCallback;
+        return this;
+    }
     @NonNull
     @Override
     public HighscoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +46,13 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.High
 
         holder.card_LBL_date.setText(highscoreData.getDate().toString());
         holder.card_LBL_score.setText(highscoreData.getScore() + "");
+
+        holder.card_LST_highscore.setOnClickListener(v ->
+        {
+            highscoreCallback.highscoreClicked(getItem(holder.getAdapterPosition()),holder.getAdapterPosition());
+            Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@------", holder.toString());
+
+        });
     }
 
     @Override
@@ -53,11 +68,13 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.High
 
         private MaterialTextView card_LBL_date;
         private MaterialTextView card_LBL_score;
-
+        private CardView card_LST_highscore;
         public HighscoreViewHolder(@NonNull View itemView) {
             super(itemView);
             card_LBL_date = itemView.findViewById(R.id.card_LBL_date);
             card_LBL_score = itemView.findViewById(R.id.card_LBL_score);
+            card_LST_highscore = itemView.findViewById(R.id.card_LST_highscore);
+
         }
     }
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.bumptech.glide.Glide;
+import com.example.spaceexplorerandroidapp.Interfaces.HighscoreCallback;
 import com.example.spaceexplorerandroidapp.Model.HighscoreData;
 import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
 import com.example.spaceexplorerandroidapp.R;
@@ -46,19 +47,25 @@ public class HighScore extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(score_IMG_background);
-
         getData();
-        listFragment = new HighscoreList(highscoreList, getApplicationContext());
+
         mapFragment = new HighscoreMap();
+        listFragment = new HighscoreList(highscoreList, getApplicationContext());
         getSupportFragmentManager().beginTransaction().add(R.id.main_FRAME_list, listFragment).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.main_FRAME_map, mapFragment).commit();
+        listFragment.setCallbackHighScoreClicked(new HighscoreCallback() {
+            @Override
+            public void highscoreClicked(HighscoreData highscoreData, int position) {
+                mapFragment.setMap(highscoreData.getLat(),highscoreData.getLon());
+            }
+        });
+
 
         score_BTN_main.setOnClickListener(v -> {
             startActivity(new Intent(this, MenuActivity.class));
             finish();
         });
-        highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
-        //Log.d("Playlist from SP", highscoreList.toString());
+
     }
 
     private void getData() {
