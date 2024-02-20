@@ -11,12 +11,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.spaceexplorerandroidapp.Logic.GameManager;
 import com.example.spaceexplorerandroidapp.Model.Asteroid;
+import com.example.spaceexplorerandroidapp.Model.Coin;
+import com.example.spaceexplorerandroidapp.Model.GameObject;
 import com.example.spaceexplorerandroidapp.Model.HighscoreData;
 import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
 import com.example.spaceexplorerandroidapp.R;
@@ -131,11 +134,15 @@ public class MainActivity extends AppCompatActivity {
                 main_ING_grid[row][col].setVisibility(View.INVISIBLE);
             }
         }
-        for(Asteroid asteroid : gameManager.getAsteroidList()) {
-            main_ING_grid[asteroid.getRow()][asteroid.getCol()].setImageResource(asteroid.getImage());
-            main_ING_grid[asteroid.getRow()][asteroid.getCol()].setVisibility(View.VISIBLE);
+        for(GameObject gameObject : gameManager.getGameObjectList()) {
+            main_ING_grid[gameObject.getRow()][gameObject.getCol()].setImageResource(gameObject.getImage());
+            main_ING_grid[gameObject.getRow()][gameObject.getCol()].setVisibility(View.VISIBLE);
         }
-        if(gameManager.checkCrush()){
+
+
+        int flag = gameManager.checkCrush();
+        Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@@@", flag + " ");
+        if(flag == 1){
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getRandomCrushSrc());
             setCurrentLife();
             if(gameManager.getCrushes() == gameManager.getLife()){ //if game ends
@@ -148,11 +155,19 @@ public class MainActivity extends AppCompatActivity {
                 toastAndVibrate("BOOM!", 500);
 
         }
-        else
+        else if (flag == 2){
+            //playSound();
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getSpaceship().getImage());
-        main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setVisibility(View.VISIBLE);
-
+            main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setVisibility(View.VISIBLE);
+        }
+        else {
+            main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getSpaceship().getImage());
+            main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setVisibility(View.VISIBLE);
+        }
         main_LBL_score.setText(String.format("%03d", gameManager.getScore()));
+    }
+
+    private void playSound() {
     }
 
     private void saveScore() {

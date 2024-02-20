@@ -1,6 +1,10 @@
 package com.example.spaceexplorerandroidapp.Logic;
 
+import android.util.Log;
+
 import com.example.spaceexplorerandroidapp.Model.Asteroid;
+import com.example.spaceexplorerandroidapp.Model.Coin;
+import com.example.spaceexplorerandroidapp.Model.GameObject;
 import com.example.spaceexplorerandroidapp.Model.Spaceship;
 import com.example.spaceexplorerandroidapp.R;
 
@@ -13,7 +17,7 @@ public class GameManager {
     private int score = 0;
     private int crushes = 0;
     private int life;
-    private ArrayList<Asteroid> asteroidList;
+    private ArrayList<GameObject> gameObjectList;
     private Spaceship spaceship;
 
 
@@ -32,7 +36,7 @@ public class GameManager {
         this.spaceship = new Spaceship();
         this.spaceship.setCol(2);
         this.spaceship.setImage(R.drawable.spaceship1);
-        asteroidList = new ArrayList<>();
+        gameObjectList = new ArrayList<>();
         return this;
     }
     public int getScore() {
@@ -62,12 +66,12 @@ public class GameManager {
         return this;
     }
 
-    public ArrayList<Asteroid> getAsteroidList() {
-        return asteroidList;
+    public ArrayList<GameObject> getGameObjectList() {
+        return gameObjectList;
     }
 
-    public GameManager setAsteroidList(ArrayList<Asteroid> asteroidList) {
-        this.asteroidList = asteroidList;
+    public GameManager setGameObjectList(ArrayList<GameObject> gameObjectList) {
+        this.gameObjectList = gameObjectList;
         return this;
     }
 
@@ -88,22 +92,30 @@ public class GameManager {
     public void randomNewAsteroid(){
         Random random = new Random();
         if(random.nextBoolean()){
-            asteroidList.add((Asteroid) new Asteroid()
+            gameObjectList.add((Asteroid) new Asteroid()
                     .setRow(0)
                     .setCol(random.nextInt(gridCols))
                     .setImage(Asteroid.getSrcList()[random.nextInt(Asteroid.getSrcList().length)]));
         }
+        else if(random.nextBoolean()){
+            gameObjectList.add((Coin) new Coin()
+                    .setRow(0)
+                    .setCol(random.nextInt(gridCols))
+                    .setImage(Coin.getSrc()));
+        }
+
     }
 
     public void nextFrame() {
-        for (int i=0; i< asteroidList.size(); i++){
-            if(asteroidList.get(i).getRow() + 1 == gridRows) {
-                updateScore(Asteroid.getPoints());
-                asteroidList.remove(i);
+        for (int i=0; i< gameObjectList.size(); i++){
+            if(gameObjectList.get(i).getRow() + 1 == gridRows) {
+                if(gameObjectList.get(i) instanceof Asteroid)
+                    updateScore(Asteroid.getPoints());
+                gameObjectList.remove(i);
                 i--;
             }
             else
-                asteroidList.get(i).setRow(asteroidList.get(i).getRow() + 1);
+                gameObjectList.get(i).setRow(gameObjectList.get(i).getRow() + 1);
         }
     }
 
@@ -111,19 +123,26 @@ public class GameManager {
         score += points;
     }
 
-    public boolean checkCrush() {
-        for (int i=0; i< asteroidList.size(); i++){
-            if(asteroidList.get(i).getRow() + 1 == gridRows ){
-                if(asteroidList.get(i).getCol() == spaceship.getCol()) {
-                    //crushes = crushes == (life-1)? 0 : crushes + 1;
-                    crushes = crushes + 1;
-                    asteroidList.remove(i);
-                    return true;
+    public int checkCrush() {
+        for (int i=0; i< gameObjectList.size(); i++){
+            if(gameObjectList.get(i).getRow() + 1 == gridRows ){
+                if(gameObjectList.get(i).getCol() == spaceship.getCol()) {
+
+                    Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@", gameObjectList.get(i).getClass().getName());
+                    if(gameObjectList.get(i) instanceof Asteroid)
+                        crushes = crushes + 1;
+                    else if (gameObjectList.get(i) instanceof Coin)
+                        updateScore(Coin.getPoints());
+                    int flag = gameObjectList.get(i) instanceof Asteroid? 1 : 2;
+                    gameObjectList.remove(i);
+                    return flag;
+
                 }
             }
         }
-        return false;
+        return 0;
     }
+
 
     public int getRandomCrushSrc() {
         Random random = new Random();
