@@ -31,6 +31,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -172,13 +173,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveScore() {
         HighscoreDataList highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
+        if(highscoreList == null)
+            highscoreList = new HighscoreDataList().setHighscoreArrayList(new ArrayList<>());
         highscoreList.addHighscore(new HighscoreData()
                 .setDate(new Date())
                 .setScore(gameManager.getScore()));
 
         Gson gson = new Gson();
-        String playlistAsJson = gson.toJson(highscoreList);
-        SharedPreferencesManager.getInstance().putString(HIGHSCORE, playlistAsJson);
+        String highscoreListAsJson = gson.toJson(highscoreList);
+        SharedPreferencesManager.getInstance().putString(HIGHSCORE, highscoreListAsJson);
     }
 
     private void setCurrentLife() {

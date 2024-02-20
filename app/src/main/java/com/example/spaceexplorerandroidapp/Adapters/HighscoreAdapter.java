@@ -16,6 +16,8 @@ import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.Utilities.ImageLoader;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.HighscoreViewHolder> {
@@ -43,14 +45,14 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.High
     @Override
     public void onBindViewHolder(@NonNull HighscoreViewHolder holder, int position) {
         HighscoreData highscoreData = getItem(position);
-
-        holder.card_LBL_date.setText(highscoreData.getDate().toString());
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm dd/mm/yy");
+        String strDate = dateFormat.format(highscoreData.getDate());
+        holder.card_LBL_date.setText(strDate);
         holder.card_LBL_score.setText(highscoreData.getScore() + "");
 
         holder.card_LST_highscore.setOnClickListener(v ->
         {
             highscoreCallback.highscoreClicked(getItem(holder.getAdapterPosition()),holder.getAdapterPosition());
-            Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@------", holder.toString());
 
         });
     }

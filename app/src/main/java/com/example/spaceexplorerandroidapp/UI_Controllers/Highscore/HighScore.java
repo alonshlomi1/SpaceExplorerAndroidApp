@@ -19,6 +19,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.gson.Gson;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -70,6 +71,9 @@ public class HighScore extends AppCompatActivity {
 
     private void getData() {
         highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
+        if(highscoreList == null)
+            highscoreList = new HighscoreDataList().setHighscoreArrayList(new ArrayList<>());
+        Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@", String.valueOf(highscoreList));
         Collections.sort(highscoreList.getHighscoreArrayList(), Comparator.comparingInt(HighscoreData::getScore).reversed());
     }
 
