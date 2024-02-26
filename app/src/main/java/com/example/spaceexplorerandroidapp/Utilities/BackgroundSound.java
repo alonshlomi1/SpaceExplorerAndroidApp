@@ -29,7 +29,7 @@ public class BackgroundSound {
         return instance;
     }
 
-    public static BackgroundSound initBackgroundSound(Context context) {
+    public static void initBackgroundSound(Context context) {
         if (instance == null)
             instance = new BackgroundSound(context);
 
@@ -58,7 +58,6 @@ public class BackgroundSound {
 
             }
         };
-        return instance;
     }
 
 

@@ -55,8 +55,8 @@ public class HighscoreMap extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
-        LatLng location = new LatLng(55.76, 12.56);
-        googleMap.addMarker(new MarkerOptions().position(location));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12));
+        LatLng location = new LatLng(31.4117257, 35.0818155);
+        //googleMap.addMarker(new MarkerOptions().position(location));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 7));
     }
 }

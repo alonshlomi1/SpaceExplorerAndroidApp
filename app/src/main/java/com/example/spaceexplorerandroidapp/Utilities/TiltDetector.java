@@ -46,13 +46,13 @@ public class TiltDetector {
     }
 
     private void calculateStep(float x, float z) {
-        if(System.currentTimeMillis() - timeStamp > 500){
+        if(System.currentTimeMillis() - timeStamp > 400){
             timeStamp = System.currentTimeMillis();
-             if(x > 3.5){
+             if(x > 3.0){
                 if(tiltCallback != null)
                     tiltCallback.moveRight();
              }
-             else if(x < -3.5){
+             else if(x < -3.0){
             if(tiltCallback != null)
                 tiltCallback.moveLeft();
              }

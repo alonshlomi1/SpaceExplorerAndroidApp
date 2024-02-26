@@ -2,6 +2,8 @@ package com.example.spaceexplorerandroidapp.Utilities;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.util.Log;
+
 
 import com.example.spaceexplorerandroidapp.R;
 
@@ -64,6 +66,7 @@ public class ShortSound{
 
 
     public void playSound(String sound){
+        Log.d("@@@@@@@@@@@##########", sound + " - " + sound_dict.get(sound) );
         executor.execute(() -> {
             mediaPlayer = MediaPlayer.create(context, sound_dict.get(sound));
             mediaPlayer.setLooping(false);

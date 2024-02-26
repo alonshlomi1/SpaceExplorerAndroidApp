@@ -73,10 +73,13 @@ public class MainActivity extends AppCompatActivity {
         if(!play_with_sensors){
             main_FAB_left.setOnClickListener(view -> arrowClick(-1));
             main_FAB_right.setOnClickListener(view -> arrowClick(1));
+            main_FAB_left.setVisibility(View.VISIBLE);
+            main_FAB_right.setVisibility(View.VISIBLE);
         }
         else{
             initTiltDetector();
-
+            main_FAB_left.setVisibility(View.INVISIBLE);
+            main_FAB_right.setVisibility(View.INVISIBLE);
         }
         initGpsManager();
         startTimer();
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         refreshUI();
     }
     private void arrowClick(int n) {
-        ShortSound.getInstance().playSound("move");
+        //ShortSound.getInstance().playSound("move");
         gameManager.moveSpaceship(n);
         refreshUI();
     }
@@ -198,10 +201,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, HighScore.class));
                 finish();
             }
-            else
+            else {
                 toastAndVibrate("BOOM!", 500);
                 ShortSound.getInstance().playSound("crash");
-
+            }
 
         }
         else if (flag == 2){

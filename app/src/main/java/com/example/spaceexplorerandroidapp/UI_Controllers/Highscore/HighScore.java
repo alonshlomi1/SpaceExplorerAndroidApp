@@ -13,6 +13,7 @@ import com.example.spaceexplorerandroidapp.Model.HighscoreData;
 import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
 import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.UI_Controllers.MenuActivity;
+import com.example.spaceexplorerandroidapp.Utilities.BackgroundSound;
 import com.example.spaceexplorerandroidapp.Utilities.SharedPreferencesManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -66,7 +67,13 @@ public class HighScore extends AppCompatActivity {
             startActivity(new Intent(this, MenuActivity.class));
             finish();
         });
+        BackgroundSound.getInstance().playSound("menu");
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BackgroundSound.getInstance().stopSound();
     }
 
     private void getData() {
