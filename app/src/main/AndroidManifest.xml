@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:name=".UI_Controllers.App"
         android:allowBackup="true"
@@ -32,6 +32,9 @@
         <activity
             android:name=".UI_Controllers.MainActivity"
             android:exported="true" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCcyAEnvuedV5tf4Qm_hEw1_GC76TL7DFM"/>
     </application>
 
 </manifest>

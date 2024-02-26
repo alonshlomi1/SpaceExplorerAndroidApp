@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighScore;
+import com.example.spaceexplorerandroidapp.Utilities.BackgroundSound;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.materialswitch.MaterialSwitch;
@@ -33,6 +34,19 @@ public class MenuActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        playSound("menu");
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopSound();
+
+    }
 
     private void findViews() {
         menu_IMG_background = findViewById(R.id.menu_IMG_background);
@@ -53,5 +67,11 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(new Intent(this, HighScore.class));
             finish();
         });
+    }
+    private void playSound(String sound_name) {
+        BackgroundSound.getInstance().playSound(sound_name);
+    }
+    private void stopSound() {
+        BackgroundSound.getInstance().stopSound();
     }
 }

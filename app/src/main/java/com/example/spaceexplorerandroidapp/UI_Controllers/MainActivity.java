@@ -5,21 +5,13 @@ import static com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighS
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.spaceexplorerandroidapp.Interfaces.TiltCallback;
 import com.example.spaceexplorerandroidapp.Logic.GameManager;
-import com.example.spaceexplorerandroidapp.Model.Asteroid;
-import com.example.spaceexplorerandroidapp.Model.Coin;
 import com.example.spaceexplorerandroidapp.Model.GameObject;
 import com.example.spaceexplorerandroidapp.Model.HighscoreData;
 import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
@@ -27,7 +19,9 @@ import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighScore;
 import com.example.spaceexplorerandroidapp.Utilities.GPSManager;
 import com.example.spaceexplorerandroidapp.Utilities.SharedPreferencesManager;
+import com.example.spaceexplorerandroidapp.Utilities.ShortSound;
 import com.example.spaceexplorerandroidapp.Utilities.SignalManager;
+import com.example.spaceexplorerandroidapp.Utilities.BackgroundSound;
 import com.example.spaceexplorerandroidapp.Utilities.TiltDetector;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -86,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
         }
         initGpsManager();
         startTimer();
+        playSound("game");
+
     }
+
+
 
 
     private void initTiltDetector() {
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         if(play_with_sensors)
             tiltDetector.start();
         gpsManager.start();
-
+        playSound("game");
 
     }
 
@@ -131,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
         if(play_with_sensors)
             tiltDetector.stop();
         gpsManager.stop();
+        stopSound();
+
     }
 
     @Override
@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         refreshUI();
     }
     private void arrowClick(int n) {
+        ShortSound.getInstance().playSound("move");
         gameManager.moveSpaceship(n);
         refreshUI();
     }
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getRandomCrushSrc());
             setCurrentLife();
             if(gameManager.getCrushes() == gameManager.getLife()){ //if game ends
+                ShortSound.getInstance().playSound("gameover");
                 toastAndVibrate("you Lost!", 1000);
                 saveScore();
                 startActivity(new Intent(this, HighScore.class));
@@ -198,10 +200,12 @@ public class MainActivity extends AppCompatActivity {
             }
             else
                 toastAndVibrate("BOOM!", 500);
+                ShortSound.getInstance().playSound("crash");
+
 
         }
         else if (flag == 2){
-            //playSound();
+            ShortSound.getInstance().playSound("coin");
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getSpaceship().getImage());
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setVisibility(View.VISIBLE);
         }
@@ -212,7 +216,11 @@ public class MainActivity extends AppCompatActivity {
         main_LBL_score.setText(String.format("%03d", gameManager.getScore()));
     }
 
-    private void playSound() {
+    private void playSound(String sound_name) {
+        BackgroundSound.getInstance().playSound(sound_name);
+    }
+    private void stopSound() {
+        BackgroundSound.getInstance().stopSound();
     }
 
     private void saveScore() {
