@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.spaceexplorerandroidapp.Interfaces.TiltCallback;
 import com.example.spaceexplorerandroidapp.Logic.GameManager;
 import com.example.spaceexplorerandroidapp.Model.Asteroid;
 import com.example.spaceexplorerandroidapp.Model.Coin;
@@ -24,8 +25,10 @@ import com.example.spaceexplorerandroidapp.Model.HighscoreData;
 import com.example.spaceexplorerandroidapp.Model.HighscoreDataList;
 import com.example.spaceexplorerandroidapp.R;
 import com.example.spaceexplorerandroidapp.UI_Controllers.Highscore.HighScore;
+import com.example.spaceexplorerandroidapp.Utilities.GPSManager;
 import com.example.spaceexplorerandroidapp.Utilities.SharedPreferencesManager;
 import com.example.spaceexplorerandroidapp.Utilities.SignalManager;
+import com.example.spaceexplorerandroidapp.Utilities.TiltDetector;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
@@ -46,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
     private ShapeableImageView[][] main_ING_grid;
     private GameManager gameManager;
     private static long frame_delay = 900;
-    private static Boolean Play_with_sensors = false;
+    private static Boolean play_with_sensors = false;
 
     private boolean timerOn = false;
     private Timer timer;
+    private TiltDetector tiltDetector;
+    private GPSManager gpsManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 frame_delay = 450;
             else
                 frame_delay = 900;
-            Play_with_sensors = extras.getBoolean("sensors");
+            play_with_sensors = extras.getBoolean("sensors");
         }
         findViews();
         Glide.with(this)
@@ -71,21 +76,61 @@ public class MainActivity extends AppCompatActivity {
                 .into(main_IMG_background);
         gameManager = new GameManager(main_IMG_hearts.length, main_ING_grid.length, main_ING_grid[0].length).setStart();
         refreshUI();
-        main_FAB_left.setOnClickListener(view -> arrowClick(-1));
-        main_FAB_right.setOnClickListener(view -> arrowClick(1));
+        if(!play_with_sensors){
+            main_FAB_left.setOnClickListener(view -> arrowClick(-1));
+            main_FAB_right.setOnClickListener(view -> arrowClick(1));
+        }
+        else{
+            initTiltDetector();
+
+        }
+        initGpsManager();
         startTimer();
+    }
+
+
+    private void initTiltDetector() {
+        tiltDetector = new TiltDetector(this, new TiltCallback() {
+            @Override
+            public void moveRight() {
+                arrowClick(-1);
+            }
+            @Override
+            public void moveLeft() {
+                arrowClick(1);
+            }
+            @Override
+            public void moveFaster() {
+            }
+            @Override
+            public void moveSlower() {
+            }
+        });
+    }
+
+    private void initGpsManager() {
+        gpsManager = new GPSManager(this);
+        gpsManager.start();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         startTimer();
+        if(play_with_sensors)
+            tiltDetector.start();
+        gpsManager.start();
+
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         stopTimer();
+        if(play_with_sensors)
+            tiltDetector.stop();
+        gpsManager.stop();
     }
 
     @Override
@@ -142,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         int flag = gameManager.checkCrush();
-        Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@@@", flag + " ");
         if(flag == 1){
             main_ING_grid[gameManager.getSpaceship().getRow()][gameManager.getSpaceship().getCol()].setImageResource(gameManager.getRandomCrushSrc());
             setCurrentLife();
@@ -177,8 +221,9 @@ public class MainActivity extends AppCompatActivity {
             highscoreList = new HighscoreDataList().setHighscoreArrayList(new ArrayList<>());
         highscoreList.addHighscore(new HighscoreData()
                 .setDate(new Date())
-                .setScore(gameManager.getScore()));
-
+                .setScore(gameManager.getScore())
+                .setLat(gpsManager.getLat())
+                .setLon(gpsManager.getLon()));
         Gson gson = new Gson();
         String highscoreListAsJson = gson.toJson(highscoreList);
         SharedPreferencesManager.getInstance().putString(HIGHSCORE, highscoreListAsJson);

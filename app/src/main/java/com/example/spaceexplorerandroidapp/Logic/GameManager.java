@@ -128,7 +128,6 @@ public class GameManager {
             if(gameObjectList.get(i).getRow() + 1 == gridRows ){
                 if(gameObjectList.get(i).getCol() == spaceship.getCol()) {
 
-                    Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@", gameObjectList.get(i).getClass().getName());
                     if(gameObjectList.get(i) instanceof Asteroid)
                         crushes = crushes + 1;
                     else if (gameObjectList.get(i) instanceof Coin)

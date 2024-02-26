@@ -73,7 +73,6 @@ public class HighScore extends AppCompatActivity {
         highscoreList = new Gson().fromJson(SharedPreferencesManager.getInstance().getString(HIGHSCORE, ""), HighscoreDataList.class);
         if(highscoreList == null)
             highscoreList = new HighscoreDataList().setHighscoreArrayList(new ArrayList<>());
-        Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@", String.valueOf(highscoreList));
         Collections.sort(highscoreList.getHighscoreArrayList(), Comparator.comparingInt(HighscoreData::getScore).reversed());
     }
 
