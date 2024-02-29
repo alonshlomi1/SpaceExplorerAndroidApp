@@ -45,7 +45,7 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.High
     @Override
     public void onBindViewHolder(@NonNull HighscoreViewHolder holder, int position) {
         HighscoreData highscoreData = getItem(position);
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm dd/mm/yy");
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm dd/MM/yy");
         String strDate = dateFormat.format(highscoreData.getDate());
         holder.card_LBL_date.setText(strDate);
         holder.card_LBL_score.setText(highscoreData.getScore() + "");
